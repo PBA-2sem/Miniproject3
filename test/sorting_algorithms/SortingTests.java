@@ -34,70 +34,6 @@ public class SortingTests {
         }
     }
 
-    /**
-     * Test of mergeSort, of class MergeSort.
-     */
-    @Test
-    public void testMergeSort() {
-        String[] wordsCopy = words.clone();
-        long before = System.currentTimeMillis();
-        MergeSort.mergeSort(wordsCopy, 0, wordsCopy.length - 1);
-        long after = System.currentTimeMillis();
-        System.out.println("MERGESORT execution time: " + (after - before) + " ms");
-        assertTrue(this.isSorted(wordsCopy));
-    }
-
-    /**
-     * Test of QuickSort
-     */
-    @Test
-    public void testQuickSort() {
-        String[] wordsCopy = words.clone();
-        long before = System.currentTimeMillis();
-        QuickSort.quickSort(wordsCopy, 0, wordsCopy.length - 1);
-        long after = System.currentTimeMillis();
-        System.out.println("QUICKSORT execution time: " + (after - before) + " ms");
-        assertTrue(this.isSorted(wordsCopy));
-    }
-
-    /**
-     * Test of InsertionSort
-     */
-    @Test
-    public void testInsertionSort() {
-//        String[] wordsCopy = words.clone();
-        long before = System.currentTimeMillis();
-        String[] test = Arrays.copyOfRange(words.clone(), 0, 20000);
-        InsertionSort.sort(test);
-        long after = System.currentTimeMillis();
-        System.out.println("INSERTIONSORT execution time: " + (after - before) + " ms  ** OBS! ONLY 20k of (930k) elements");
-        assertTrue(this.isSorted(test));
-    }
-
-    /**
-     * Test of QuickSort
-     */
-    @Test
-    public void testSelectionSort() {
-        String[] wordsCopy = Arrays.copyOfRange(words.clone(), 0, 20000);
-        long before = System.currentTimeMillis();
-        SelectionSort.sort(wordsCopy);
-        long after = System.currentTimeMillis();
-        System.out.println("SELECTIONSORT execution time: " + (after - before) + " ms ** OBS! ONLY 20k of (930k) elements");
-        assertTrue(this.isSorted(wordsCopy));
-    }
-
-    @Test
-    public void testHeapSort() {
-        String[] wordsCopy = words.clone();
-        long before = System.currentTimeMillis();
-        HeapSort.sort(wordsCopy);
-        long after = System.currentTimeMillis();
-        System.out.println("HEAPSORT execution time: " + (after - before) + " ms");
-//        System.out.println("HEAPSORT execution time: " + (after - before) + " ms ** OBS! ONLY 20k of (930k) elements");
-        assertTrue(this.isSorted(wordsCopy));
-    }
-
     @Test
     public void testTrieSort() {
         String[] wordsCopy = words.clone();
@@ -117,11 +53,5 @@ public class SortingTests {
             }
         }
         return true;
-    }
-
-    private void printSome(String[] arr, int from, int to) {
-        for (int i = from; i < to; i++) {
-            System.out.println(arr[i]);
-        }
     }
 }
