@@ -1,0 +1,55 @@
+package search_shakespeare;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+/**
+ *
+ * @author stanislavnovitski
+ * @param <T>
+ */
+public class KeyTrie<T> extends Trie<T> {
+
+    private Key key;
+    private T value = null;
+
+    public KeyTrie(Key key, T action) {
+        this.key = key;
+        this.value = action;
+    }
+
+    @Override
+    Trie<T> add(Key key, T action) {
+        if (this.key == key) {
+            this.value = action;
+            return this;
+        }
+        Trie t = new ArrayTrie(this.key, action);
+        return t.add(key, action);
+    }
+
+    @Override
+    T find(Key key) {
+        if (this.key == key) {
+            return this.value;
+        }
+        return null;
+    }
+
+    @Override
+    Trie<T> locate(Key key) {
+        if (key.getLength() == 0 || this.key.includes(key)) {
+            return this;
+        }
+        return null;
+    }
+
+    @Override
+    public Iterator<Pair<Key, T>> iterator() {
+        List<Pair<Key, T>> test = new ArrayList();
+        test.add(new Pair(this.key, this.value));
+        return test.iterator();
+    }
+
+}
