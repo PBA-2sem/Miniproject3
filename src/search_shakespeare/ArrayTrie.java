@@ -22,7 +22,7 @@ public class ArrayTrie<T> extends Trie<T> {
     }
 
     public ArrayTrie(Key key, T action) {
-        
+
         this.tries = new Trie[key.getMax() + 1];
 
         for (int i = 0; i < this.tries.length; i++) {
@@ -67,4 +67,10 @@ public class ArrayTrie<T> extends Trie<T> {
         return new ArrayIterator(withoutNullArray, 0, withoutNullArray.length);
     }
 
+    @Override
+    public String toString() {
+        return "jeff";
+    }
+
+    
 }

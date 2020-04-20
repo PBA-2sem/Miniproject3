@@ -16,12 +16,12 @@ public class ShakespeareSuffixKey implements Key<ShakespeareSuffixKey> {
         this.text = text;
         this.origin = origin;
         this.position = position;
-        this.length = text.length() - origin;
+        this.length = text.length() - position;
     }
-    
+
     public ShakespeareSuffixKey(String text) {
         this.text = text;
-        this.length = text.length() - this.origin;
+        this.length = text.length() - this.position;
     }
 
     private int indexOf(int position) {
@@ -68,7 +68,7 @@ public class ShakespeareSuffixKey implements Key<ShakespeareSuffixKey> {
     public int getMax() {
         return this.max;
     }
-    
+
     public ShakespeareSuffixKey getNext() {
         return new ShakespeareSuffixKey(this.text, this.origin, this.position + 1);
     }
@@ -81,16 +81,37 @@ public class ShakespeareSuffixKey implements Key<ShakespeareSuffixKey> {
     public boolean includes(ShakespeareSuffixKey other) {
         boolean go = false;
         if ((other.getClass() == this.getClass()) && (other.getSize() <= this.getSize())) {
-            
+
             int l = other.getText().length() - other.getOrigin();
-            
-            for (int i = 0; i <= l - 1; i++) {
+
+            for (int i = 0; i <= l; i++) {
                 int a = other.indexOf(other.getText().charAt(i) + other.getOrigin());
                 int b = this.indexOf(other.getText().charAt(i) + this.getOrigin());
                 go = a == b;
             }
         }
         return go;
-    };
+    }
+
+    public String toString() {
+        StringBuffer sb = new StringBuffer();
+
+        int randomPlzHelpInt = Math.min(this.text.length() - 1, this.origin + 100);
+        for (int i = this.origin; i <= randomPlzHelpInt; i++) {
+            if (i == this.position) {
+                sb.append("[");
+            }
+            sb.append(this.text.charAt(i));
+        }
+        if (this.position > this.origin + 100) {
+            sb.append("...[");
+        }
+        if (this.text.length() <= this.origin + 100) {
+            sb.append("...]");
+        } else {
+            sb.append("]");
+        }
+        return sb.toString();
+    }
 
 }

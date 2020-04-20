@@ -29,5 +29,9 @@ public class Pair<K, V> {
     public void setSecond(V second) {
         this.second = second;
     }
+    
+    public String toString() {
+        return first.toString() + " " + second.toString();
+    }
 
 }

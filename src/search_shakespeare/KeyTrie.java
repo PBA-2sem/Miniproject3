@@ -45,6 +45,9 @@ public class KeyTrie<T> extends Trie<T> {
         return null;
     }
 
+    public String toString() {
+        return this.key.toString() + " " + this.value.toString();
+    }
     @Override
     public Iterator<Pair<Key, T>> iterator() {
         List<Pair<Key, T>> test = new ArrayList();
