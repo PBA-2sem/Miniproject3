@@ -1,6 +1,5 @@
 package search_shakespeare;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.Objects;
@@ -12,15 +11,25 @@ import utilities.ArrayIterator;
  */
 public class ArrayTrie<T> extends Trie<T> {
 
-    Trie[] tries;
+    Trie<T>[] tries;
 
     public ArrayTrie(Key key) {
-        this.tries = (Trie[]) Array.newInstance(null, key.getMax() + 1);
+        this.tries = new Trie[key.getMax() + 1];
+
+        for (int i = 0; i < this.tries.length; i++) {
+            this.tries[i] = null;
+        }
     }
 
     public ArrayTrie(Key key, T action) {
-        this.tries = (Trie[]) Array.newInstance(null, key.getMax() + 1);
-        tries[key.getIndex()] = new KeyTrie(key.getNext(), action);
+        
+        this.tries = new Trie[key.getMax() + 1];
+
+        for (int i = 0; i < this.tries.length; i++) {
+            this.tries[i] = null;
+        }
+
+        this.tries[key.getIndex()] = new KeyTrie(key.getNext(), action);
     }
 
     @Override

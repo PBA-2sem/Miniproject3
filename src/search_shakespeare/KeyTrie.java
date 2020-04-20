@@ -25,7 +25,7 @@ public class KeyTrie<T> extends Trie<T> {
             this.value = action;
             return this;
         }
-        Trie t = new ArrayTrie(this.key, action);
+        Trie<T> t = new ArrayTrie<T>(this.key, action);
         return t.add(key, action);
     }
 

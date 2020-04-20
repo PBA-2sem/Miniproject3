@@ -18,6 +18,11 @@ public class ShakespeareSuffixKey implements Key<ShakespeareSuffixKey> {
         this.position = position;
         this.length = text.length() - origin;
     }
+    
+    public ShakespeareSuffixKey(String text) {
+        this.text = text;
+        this.length = text.length() - this.origin;
+    }
 
     private int indexOf(int position) {
         if (position >= this.text.length()) {

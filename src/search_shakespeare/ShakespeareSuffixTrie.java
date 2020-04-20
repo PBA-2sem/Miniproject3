@@ -1,8 +1,9 @@
 package search_shakespeare;
 
 import java.io.IOException;
-import java.nio.file.Path;
 import java.util.Iterator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import utilities.FileUtility;
 
 /**
@@ -11,7 +12,10 @@ import utilities.FileUtility;
  */
 public class ShakespeareSuffixTrie implements Iterable<Pair<Key, Integer>> {
 
-    Trie<Integer> trie;
+    public ShakespeareSuffixTrie() {
+    }
+
+    Trie<Integer> trie = null;
 
     public void add(ShakespeareSuffixKey key) {
         if (trie == null) {
@@ -21,9 +25,28 @@ public class ShakespeareSuffixTrie implements Iterable<Pair<Key, Integer>> {
         }
     }
 
-    public void load(Path path) throws IOException {
-        // WTF IS .rest FUCKIN KOTLIN...
-//         = ShakespeareSuffixKey(FileUtility.toStringArray(path.toString(), "[A-Za-z']+"));
+    public void load(String path) throws IOException {
+        String[] words = FileUtility.toStringArray(path, "[^a-zA-Z]");
+        String singleString = this.createSingleString(words);
+        ShakespeareSuffixKey works = new ShakespeareSuffixKey(singleString);
+        while (works.getSize() > 0) {
+            this.add(works);
+            works = works.getRest();
+        }
+
+    }
+
+//    public String getWord(String word) {
+//        return this.trie.find(new ShakespeareSuffixKey(word)).toString();
+//    }
+
+    private String createSingleString(String[] words) {
+        StringBuffer sb = new StringBuffer();
+        for (int i = 0; i < words.length; i++) {
+            sb.append(words[i]);
+            sb.append(" ");
+        }
+        return sb.toString();
     }
 
     @Override
@@ -31,4 +54,12 @@ public class ShakespeareSuffixTrie implements Iterable<Pair<Key, Integer>> {
         return this.trie.iterator();
     }
 
+    public static void main(String[] args) {
+        ShakespeareSuffixTrie s = new ShakespeareSuffixTrie();
+        try {
+            s.load("src/shakespeare_project/data.txt");
+        } catch (IOException ex) {
+            Logger.getLogger(ShakespeareSuffixTrie.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }
