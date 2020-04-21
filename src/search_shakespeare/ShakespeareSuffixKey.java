@@ -80,7 +80,7 @@ public class ShakespeareSuffixKey implements Key<ShakespeareSuffixKey> {
     @Override
     public boolean includes(ShakespeareSuffixKey other) {
         boolean go = false;
-        if ((other.getClass() == this.getClass()) && (other.getSize() <= this.getSize())) {
+        if ((other.getClass().equals(this.getClass())) && (other.getSize() <= this.getSize())) {
 
             int l = other.getText().length() - other.getOrigin();
 

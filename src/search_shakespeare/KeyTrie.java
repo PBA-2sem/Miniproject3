@@ -22,17 +22,17 @@ public class KeyTrie<T> extends Trie<T> {
 
     @Override
     Trie<T> add(Key key, T action) {
-        if (this.key == key) {
+        if (this.key.equals(key)) {
             this.value = action;
             return this;
         }
-        Trie<T> t = new ArrayTrie<T>(this.key, action);
+        ArrayTrie<T> t = new ArrayTrie<T>(this.key, action);
         return t.add(key, action);
     }
 
     @Override
     T find(Key key) {
-        if (this.key == key) {
+        if (this.key.equals(key)) {
             return this.value;
         }
         return null;

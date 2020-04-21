@@ -58,15 +58,13 @@ public class TextExample extends Application {
             Iterator iter = toBeOrNot.iterator();
             Set<String> set = new HashSet<>();
 
-            for (int i = 0; i < 20; i++) {
+            for (int i = 0; i < 200; i++) {
                 if (iter.hasNext()) {
-                    //
-                    set.add(iter.next().toString());
+                    recursiveMethod(iter, set);
                 } else {
                     break;
                 }
             }
-
             StringBuilder sb = new StringBuilder();
             set.forEach((object) -> {
                 sb.append(object.toString()).append("\n");
@@ -84,6 +82,25 @@ public class TextExample extends Application {
         stage.setTitle("Searching Shakespeare");
         stage.setScene(scene);
         stage.show();
+    }
+    
+    public void recursiveMethod(Iterator iter, Set set) {
+        Object obj = iter.next();
+        if (obj.getClass().getCanonicalName().equals("search_shakespeare.ArrayTrie")) {
+            System.out.println("ArrayTrie");
+            ArrayTrie at = (ArrayTrie) obj;
+            recursiveMethod(at.iterator(), set);
+        } 
+        else if (obj.getClass().getCanonicalName().equals("search_shakespeare.Trie")) {
+            System.out.println("Trie");
+            Trie trie = (Trie) obj;
+            recursiveMethod(trie.iterator(), set);
+        }
+        else {
+            System.out.println("KeyTrie");
+            System.out.println(obj.toString());
+            set.add(obj.toString());
+        }
     }
     
 
