@@ -93,8 +93,9 @@ public class ShakespeareSuffixKey implements Key<ShakespeareSuffixKey> {
         return go;
     }
 
+    @Override
     public String toString() {
-        StringBuffer sb = new StringBuffer();
+        StringBuilder sb = new StringBuilder();
 
         int randomPlzHelpInt = Math.min(this.text.length() - 1, this.origin + 100);
         for (int i = this.origin; i <= randomPlzHelpInt; i++) {

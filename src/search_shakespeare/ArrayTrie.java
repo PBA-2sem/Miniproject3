@@ -64,13 +64,15 @@ public class ArrayTrie<T> extends Trie<T> {
     public Iterator<Pair<Key, T>> iterator() {
         // remove possible null values
         Trie[] withoutNullArray = Arrays.stream(this.tries).filter(Objects::nonNull).toArray(Trie[]::new);
-        return new ArrayIterator(withoutNullArray, 0, withoutNullArray.length);
+        ArrayIterator ai = new ArrayIterator(withoutNullArray, 0, withoutNullArray.length);
+        return ai;
     }
 
+    
+    
     @Override
     public String toString() {
         return "jeff";
     }
 
-    
 }

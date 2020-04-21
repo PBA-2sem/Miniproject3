@@ -57,19 +57,24 @@ public class ShakespeareSuffixTrie implements Iterable<Pair<Key, Integer>> {
         try {
             this.load("src/shakespeare_project/data.txt");
 
-            Trie toBeOrNot = this.trie.locate(new ShakespeareSuffixKey("and"));
-            
+            Trie toBeOrNot = this.trie.locate(new ShakespeareSuffixKey("to be or no"));
+
             Iterator iter = toBeOrNot.iterator();
             ArrayList list = new ArrayList();
-            for (int i = 0; i < 10; i++) {
-                list.add(iter.next());
+            for (int i = 0; i < 20; i++) {
+                if (iter.hasNext()) {
+                    list.add(iter.next());
+                } else {
+                    break;
+                }
             }
-            list.forEach(i -> System.out.println("Answers " + i.toString()));
+            list.forEach(i -> System.out.println(i.toString()));
+//            iter.forEachRemaining(i -> System.out.println(i.toString()));
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
             Logger.getLogger(ShakespeareSuffixTrie.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+//return null;
     }
 //    fun tryShakespeareSuffixTrie() {
 //  val suffixTree = suffixTrieFromFile(shakespeareTextFileName)

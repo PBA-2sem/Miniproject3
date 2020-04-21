@@ -3,6 +3,7 @@ package search_shakespeare;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import utilities.ArrayIterator;
 
 /**
  *
@@ -48,11 +49,14 @@ public class KeyTrie<T> extends Trie<T> {
     public String toString() {
         return this.key.toString() + " " + this.value.toString();
     }
+
     @Override
     public Iterator<Pair<Key, T>> iterator() {
-        List<Pair<Key, T>> test = new ArrayList();
-        test.add(new Pair(this.key, this.value));
-        return test.iterator();
+        Pair[] test = new Pair[]{new Pair(this.key, this.value)};
+//        List<Pair<Key, T>> test = new ArrayList();
+//        test.add(new Pair(this.key, this.value));
+        ArrayIterator ai = new ArrayIterator(test, 0, test.length);
+        return ai;
     }
 
 }
