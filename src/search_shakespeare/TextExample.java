@@ -1,8 +1,6 @@
 package search_shakespeare;
 
 import java.io.IOException;
-import static java.nio.file.Files.list;
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
@@ -10,7 +8,6 @@ import javafx.event.ActionEvent;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
 import javafx.event.EventHandler;
-import javafx.event.Event;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -58,7 +55,7 @@ public class TextExample extends Application {
             Iterator iter = toBeOrNot.iterator();
             Set<String> set = new HashSet<>();
 
-            for (int i = 0; i < 200; i++) {
+            for (int i = 0; i < 20; i++) {
                 if (iter.hasNext()) {
                     recursiveMethod(iter, set);
                 } else {
@@ -83,26 +80,17 @@ public class TextExample extends Application {
         stage.setScene(scene);
         stage.show();
     }
-    
+
     public void recursiveMethod(Iterator iter, Set set) {
         Object obj = iter.next();
         if (obj.getClass().getCanonicalName().equals("search_shakespeare.ArrayTrie")) {
-            System.out.println("ArrayTrie");
             ArrayTrie at = (ArrayTrie) obj;
             recursiveMethod(at.iterator(), set);
-        } 
-        else if (obj.getClass().getCanonicalName().equals("search_shakespeare.Trie")) {
-            System.out.println("Trie");
-            Trie trie = (Trie) obj;
-            recursiveMethod(trie.iterator(), set);
-        }
-        else {
-            System.out.println("KeyTrie");
-            System.out.println(obj.toString());
+        } else {
+//            System.out.println(obj.toString());
             set.add(obj.toString());
         }
     }
-    
 
     public static void main(String args[]) {
         launch(args);

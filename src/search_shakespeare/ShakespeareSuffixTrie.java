@@ -16,7 +16,7 @@ public class ShakespeareSuffixTrie implements Iterable<Pair<Key, Integer>> {
     public ShakespeareSuffixTrie() {
     }
 
-    Trie<Integer> trie = null;
+    Trie trie = null;
 
     public void add(ShakespeareSuffixKey key) {
         if (trie == null) {
@@ -74,14 +74,7 @@ public class ShakespeareSuffixTrie implements Iterable<Pair<Key, Integer>> {
             System.out.println(ex.getMessage());
             Logger.getLogger(ShakespeareSuffixTrie.class.getName()).log(Level.SEVERE, null, ex);
         }
-//return null;
     }
-//    fun tryShakespeareSuffixTrie() {
-//  val suffixTree = suffixTrieFromFile(shakespeareTextFileName)
-//
-//  val toBeOrNot = suffixTree.trie?.locate(ShakespeareSuffixKey("to be or no"))
-//  toBeOrNot?.forEach { println("${it.first} --> ${it.second}")}
-//  }
 
     public static void main(String[] args) {
         ShakespeareSuffixTrie s = new ShakespeareSuffixTrie();
